@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="@string/app_name"
-
-        android:textColor="#000000"
+        android:textColor="#FFE300"
         android:textSize="40sp"
         app:fontFamily="@font/spicy_rice" />
 
@@ -25,7 +24,58 @@
         android:text="@string/create_new_account"
 
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="22sp"
         app:fontFamily="@font/spicy_rice" />
+    
+    <EditText
+        android:id="@+id/edittext_full_name"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:background="#000000"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:hint="@string/full_name_hint" />
+
+    <EditText
+        android:id="@+id/edittext_email"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="#000000"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:hint="@string/email_hint" />
+
+    <EditText
+        android:id="@+id/edittext_password"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="#000000"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:hint="@string/password_hint" />
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="190dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="#37FF00"
+        android:text="@string/register_button" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:text="@string/already_registered"/>
 
 </LinearLayout>
