@@ -5,8 +5,10 @@
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="register_button">Register</string>
+    <string name="logout_button">Logout</string>
     <string name="login_button">Login</string>
     <string name="login_existing_account">Login with your account</string>
     <string name="already_registered">Already Registered? Login here</string>
     <string name="new_account">New here? Create an account</string>
+
 </resources>
