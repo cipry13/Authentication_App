@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/advent_pro_thin</item>
+        <item>@font/akronim</item>
+        <item>@font/luckiest_guy</item>
+        <item>@font/sancreek</item>
+        <item>@font/spicy_rice</item>
+    </array>
+</resources>
