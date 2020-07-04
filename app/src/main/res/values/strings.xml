@@ -10,5 +10,5 @@
     <string name="login_existing_account">Login with your account</string>
     <string name="already_registered">Already Registered? Login here</string>
     <string name="new_account">New here? Create an account</string>
-
+    <string name="reset_password">Forgot password? Reset here</string>
 </resources>

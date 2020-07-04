@@ -68,4 +68,12 @@
         android:textSize="18sp"
         android:text="@string/new_account"/>
 
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:text="@string/reset_password"/>
+
 </LinearLayout>
