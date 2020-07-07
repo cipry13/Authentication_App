@@ -18,4 +18,5 @@
     <string name="your_phone">Your phone number</string>
     <string name="not_verified">Email not verified</string>
     <string name="verify_button">Verify now</string>
+    <string name="change_password_button">Change password</string>
 </resources>
