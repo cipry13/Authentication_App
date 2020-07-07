@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         phone = findViewById(R.id.profile_phone);
         changePasswordButton = findViewById(R.id.change_password);
 
+
         verifyMessage = findViewById(R.id.not_verified);
         verifyEmailButton = findViewById(R.id.verify_email_button);
 
