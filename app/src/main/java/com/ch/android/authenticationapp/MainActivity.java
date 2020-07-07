@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final EditText changePassword = new EditText(v.getContext());
                 AlertDialog.Builder passwordChangeDialog = new AlertDialog.Builder(v.getContext());
                 passwordChangeDialog.setTitle("Change password ?");
