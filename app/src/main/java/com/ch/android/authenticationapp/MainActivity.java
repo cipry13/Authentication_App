@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
-    Button verifyEmailButton, changePasswordButton, changeProfileImageButton;
+    Button verifyEmailButton, changePasswordButton, changeProfileButton;
     FirebaseUser fUser;
     StorageReference storageReference;
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         profileImage = findViewById(R.id.profile_image);
-        changeProfileImageButton = findViewById(R.id.change_profile_image);
+        changeProfileButton = findViewById(R.id.change_profile);
         name = findViewById(R.id.profile_name);
         email = findViewById(R.id.profile_email);
         phone = findViewById(R.id.profile_phone);
@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                     name.setText(documentSnapshot.getString("name"));
                     email.setText(documentSnapshot.getString("email"));
                     phone.setText(documentSnapshot.getString("phone"));
+
+
                 }
             }
         });
@@ -149,46 +151,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        changeProfileImageButton.setOnClickListener(new View.OnClickListener() {
+        changeProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGalleryIntent,1000);
-            }
-        });
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1000) {
-            if(resultCode == Activity.RESULT_OK){
-                Uri imageUri = data.getData();
-                //profileImage.setImageURI(imageUri);
-
-                uploadImageToFirebase(imageUri);
-
-            }
-        }
-    }
-
-    private void uploadImageToFirebase(Uri imageUri) {
-        final StorageReference fileReference = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
-        fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(profileImage);
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this,"Image upload failed",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(v.getContext(), EditProfile.class);
+                i.putExtra("name", name.getText().toString());
+                i.putExtra("email", email.getText().toString());
+                i.putExtra("phone", phone.getText().toString());
+                startActivity(i);
             }
         });
 
