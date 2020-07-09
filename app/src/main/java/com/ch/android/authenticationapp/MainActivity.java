@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import io.grpc.Context;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -32,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
     TextView name, email, phone, verifyMessage;
@@ -61,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileReference = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
+        profileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profileImage);
+            }
+        });
 
         userId = fAuth.getCurrentUser().getUid();
         fUser = fAuth.getCurrentUser();
@@ -156,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1000) {
             if(resultCode == Activity.RESULT_OK){
                 Uri imageUri = data.getData();
-                profileImage.setImageURI(imageUri);
+                //profileImage.setImageURI(imageUri);
 
                 uploadImageToFirebase(imageUri);
 
@@ -165,11 +174,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void uploadImageToFirebase(Uri imageUri) {
-        StorageReference fileReference = storageReference.child("profile.jpg");
+        final StorageReference fileReference = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
         fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(MainActivity.this,"Image uploaded",Toast.LENGTH_SHORT).show();
+                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(profileImage);
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
